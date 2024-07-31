@@ -11,20 +11,20 @@ const VideoIfram = () => {
   return (
     <div style={style.container}>
       {data.map((item) => (
-        <section  style={style.section}>
-          <div key={item.id.videoId} style={style.video}>
+        <section style={style.section} key={item.video.videoId}>
+          <div style={style.video}>
             <iframe
               width="300"
               height="200"
-              src={`https://www.youtube.com/embed/${item.id.videoId}`}
+              src={`https://www.youtube.com/embed/${item.video.videoId}`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              title={item.snippet.title}
+              title={item.video.title}
               style={style.thumbnail}
             ></iframe>
           </div>
-          <p style={style.viNames}>{item.snippet.title}</p>
+          <p style={style.viNames}>{item.video.title}</p>
         </section>
       ))}
     </div>
@@ -49,7 +49,7 @@ const style = {
   video: {
     width: '300px',
     height: '200px',
-    background: '#eee', 
+    background: '#eee',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

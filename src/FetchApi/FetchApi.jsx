@@ -3,31 +3,30 @@ import { DataContext } from "../Context/ApiContext";
 
 const FetchApi = () => {
   const { setData } = useContext(DataContext);
-
   useEffect(() => {
-    const fetchApi = async () => {
+    const fetchDatas = async () => {
+      const url =
+        "https://youtube138.p.rapidapi.com/search/?q=despacito&hl=en&gl=US";
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "e8aaab0f7cmshfeeebdb03c0fae6p1ed5b6jsnd679fcd3908b",
+          "x-rapidapi-host": "youtube138.p.rapidapi.com",
+        },
+      };
+
       try {
-        const res = await fetch(
-          "https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=7ghhRHRP6t4&part=id%2Csnippet&type=video&maxResults=50",
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-key": "e8aaab0f7cmshfeeebdb03c0fae6p1ed5b6jsnd679fcd3908b",
-              "x-rapidapi-host": "youtube-v31.p.rapidapi.com",
-            },
-          }
-        );
-        const data = await res.json();
-        setData(data.items); 
-      } catch (err) {
-        console.error("Failed to fetch data:", err);
+        const response = await fetch(url, options);
+        const result = await response.json();
+        setData(result.contents);
+      } catch (error) {
+        console.error(error);
       }
     };
-
-    fetchApi();
-  }, [setData]);
-
-  return null; 
+    fetchDatas();
+  }, []);
+  return <div></div>;
 };
 
 export default FetchApi;
