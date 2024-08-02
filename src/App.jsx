@@ -1,11 +1,16 @@
 import React from 'react'
-import Home from './Pages/Home'
 import './App.css'
+import Main from './Pages/Main'
+import { Route, Routes } from 'react-router-dom'
+import VideoPlay from './Pages/VideoPlay'
 
 const App = () => {
   return (
     <div>
-      <Home />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/videoplay/:id" element={<VideoPlay />} />
+      </Routes>
     </div>
   )
 }
