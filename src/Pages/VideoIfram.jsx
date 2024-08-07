@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { DataContext } from "../Context/ApiContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const VideoIfram = () => {
   const { data } = useContext(DataContext);
-  const navigate = useNavigate();
 
   if (!data || data.length === 0) {
     return <p>Loading...</p>;
@@ -14,27 +13,26 @@ const VideoIfram = () => {
     <div style={style.container}>
       {data.map((item) => (
         <section style={style.section} key={item.video.videoId}>
-          <Link to={`/videoplay/${item.video.videoId}`}><div style={style.video}>
-            <iframe
-              width="300"
-              height="200"
-              src={`https://www.youtube.com/embed/${item.video.videoId}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={item.video.title}
-              style={style.thumbnail}
-            ></iframe>
-          </div>
-          <p style={style.viNames}>{item.video.title}</p>
+          <Link to={`/videoplay/${item.video.videoId}`}>
+            <div style={style.video}>
+              <iframe
+                width="300"
+                height="200"
+                src={`https://www.youtube.com/embed/${item.video.videoId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={item.video.title}
+                style={style.thumbnail}
+              ></iframe>
+            </div>
+            <p style={style.viNames}>{item.video.title}</p>
           </Link>
         </section>
       ))}
     </div>
   );
 };
-
-export default VideoIfram;
 
 const style = {
   container: {
@@ -67,3 +65,5 @@ const style = {
     color: "#333",
   },
 };
+
+export default VideoIfram;
